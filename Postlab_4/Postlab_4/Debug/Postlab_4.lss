@@ -1,0 +1,589 @@
+
+Postlab_4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000016  00800100  00000358  000003ec  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000358  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000006  00800116  00800116  00000402  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000402  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000434  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000050  00000000  00000000  00000474  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000008d3  00000000  00000000  000004c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006f0  00000000  00000000  00000d97  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000479  00000000  00000000  00001487  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c4  00000000  00000000  00001900  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000446  00000000  00000000  000019c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000177  00000000  00000000  00001e0a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000040  00000000  00000000  00001f81  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <__vector_4>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 42 01 	jmp	0x284	; 0x284 <__vector_21>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e8 e5       	ldi	r30, 0x58	; 88
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a6 31       	cpi	r26, 0x16	; 22
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a6 e1       	ldi	r26, 0x16	; 22
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ac 31       	cpi	r26, 0x1C	; 28
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 9f 00 	call	0x13e	; 0x13e <main>
+  9e:	0c 94 aa 01 	jmp	0x354	; 0x354 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <setup>:
+
+void setup(void){
+	//Configuración de salidas//
+	
+	// - Pines del puerto D
+	DDRD = 0xFF;
+  a6:	8f ef       	ldi	r24, 0xFF	; 255
+  a8:	8a b9       	out	0x0a, r24	; 10
+	PORTD = 0;
+  aa:	1b b8       	out	0x0b, r1	; 11
+	// Configurar Pines RX y TX para usarlas comos Salidas (PD0 - PD1)
+	UCSR0B = 0;
+  ac:	10 92 c1 00 	sts	0x00C1, r1	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+	
+	// - Pines del puerto B
+	DDRB = 0x3F;
+  b0:	8f e3       	ldi	r24, 0x3F	; 63
+  b2:	84 b9       	out	0x04, r24	; 4
+	PORTB = 0;
+  b4:	15 b8       	out	0x05, r1	; 5
+	
+	//Configurar PC2, PC3, PC4 y PC5 como salidas - No afectar las entradas de PC0 y PC1
+	DDRC |= (1<<PC2)|(1<<PC3)|(1<<PC4)|(1<<PC5);
+  b6:	87 b1       	in	r24, 0x07	; 7
+  b8:	8c 63       	ori	r24, 0x3C	; 60
+  ba:	87 b9       	out	0x07, r24	; 7
+	
+	// Configuración de las entradas//
+
+	// Configurar PC0 y PC1 como entradas
+	DDRC &= ~((1 << PC0) | (1 << PC1));
+  bc:	87 b1       	in	r24, 0x07	; 7
+  be:	8c 7f       	andi	r24, 0xFC	; 252
+  c0:	87 b9       	out	0x07, r24	; 7
+
+	// Habilitar resistencias de PULL-UP para PC0 y PC1
+	PORTC |= (1 << PC0) | (1 << PC1);
+  c2:	88 b1       	in	r24, 0x08	; 8
+  c4:	83 60       	ori	r24, 0x03	; 3
+  c6:	88 b9       	out	0x08, r24	; 8
+  c8:	08 95       	ret
+
+000000ca <b_inter>:
+}
+
+void b_inter(void){
+	// INTERRUPCION PARA PUERTO C
+	PCICR |= (1<<PCIE1);					//PCIE1 -  PCINT[14:8] -> equivale de PC0 a PC6
+  ca:	e8 e6       	ldi	r30, 0x68	; 104
+  cc:	f0 e0       	ldi	r31, 0x00	; 0
+  ce:	80 81       	ld	r24, Z
+  d0:	82 60       	ori	r24, 0x02	; 2
+  d2:	80 83       	st	Z, r24
+	// HABILITAR PARA PCINT1
+	PCMSK1 |= ((1<<PCINT8)|(1<<PCINT9));	//Al trabajar en PCIE1 se debe usar PCMSK1
+  d4:	ec e6       	ldi	r30, 0x6C	; 108
+  d6:	f0 e0       	ldi	r31, 0x00	; 0
+  d8:	80 81       	ld	r24, Z
+  da:	83 60       	ori	r24, 0x03	; 3
+  dc:	80 83       	st	Z, r24
+  de:	08 95       	ret
+
+000000e0 <ADC_IN>:
+}
+
+
+void ADC_IN(void){
+	//Configuración del ADC
+	ADMUX |= 0x07;			// Se habilita la entrada A7 como una entrada analogica (ADC[7])
+  e0:	ec e7       	ldi	r30, 0x7C	; 124
+  e2:	f0 e0       	ldi	r31, 0x00	; 0
+  e4:	80 81       	ld	r24, Z
+  e6:	87 60       	ori	r24, 0x07	; 7
+  e8:	80 83       	st	Z, r24
+	
+	// Configuración de la referencia AVCC
+	ADMUX |= (1<<REFS0);
+  ea:	80 81       	ld	r24, Z
+  ec:	80 64       	ori	r24, 0x40	; 64
+  ee:	80 83       	st	Z, r24
+	ADMUX &= ~(1<<REFS1);
+  f0:	80 81       	ld	r24, Z
+  f2:	8f 77       	andi	r24, 0x7F	; 127
+  f4:	80 83       	st	Z, r24
+	
+	// Implementado la justificación a la Izquierda
+	ADMUX |= (1<<ADLAR);
+  f6:	80 81       	ld	r24, Z
+  f8:	80 62       	ori	r24, 0x20	; 32
+  fa:	80 83       	st	Z, r24
+	ADCSRA = 0;
+  fc:	ea e7       	ldi	r30, 0x7A	; 122
+  fe:	f0 e0       	ldi	r31, 0x00	; 0
+ 100:	10 82       	st	Z, r1
+	
+	// Se enciende el ADC
+	ADCSRA |= (1<<ADEN);
+ 102:	80 81       	ld	r24, Z
+ 104:	80 68       	ori	r24, 0x80	; 128
+ 106:	80 83       	st	Z, r24
+	
+	// Se habilita ISR ADC
+	ADCSRA |= (1<<ADIE);
+ 108:	80 81       	ld	r24, Z
+ 10a:	88 60       	ori	r24, 0x08	; 8
+ 10c:	80 83       	st	Z, r24
+	
+	// Configuración del Prescaler > 16M/128 = 125KHz   -> Es necesario ya que el ADC debe funcionar a partir de 8 bits
+	ADCSRA |= (1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
+ 10e:	80 81       	ld	r24, Z
+ 110:	87 60       	ori	r24, 0x07	; 7
+ 112:	80 83       	st	Z, r24
+	
+	// Se desabilita la entrada digital PC0
+	DIDR0 |= (1<<ADC0D);
+ 114:	ee e7       	ldi	r30, 0x7E	; 126
+ 116:	f0 e0       	ldi	r31, 0x00	; 0
+ 118:	80 81       	ld	r24, Z
+ 11a:	81 60       	ori	r24, 0x01	; 1
+ 11c:	80 83       	st	Z, r24
+ 11e:	08 95       	ret
+
+00000120 <dec_hex>:
+}
+
+void dec_hex(uint8_t val){
+	HIGHB_4 = val/16;				// Determina los primeros 4 bits
+ 120:	28 2f       	mov	r18, r24
+ 122:	22 95       	swap	r18
+ 124:	2f 70       	andi	r18, 0x0F	; 15
+ 126:	30 e0       	ldi	r19, 0x00	; 0
+ 128:	30 93 17 01 	sts	0x0117, r19	; 0x800117 <__data_end+0x1>
+ 12c:	20 93 16 01 	sts	0x0116, r18	; 0x800116 <__data_end>
+	LOWB_4 = val%16;				// El rresiduo de la división se almnacena en la variable 
+ 130:	8f 70       	andi	r24, 0x0F	; 15
+ 132:	90 e0       	ldi	r25, 0x00	; 0
+ 134:	90 93 19 01 	sts	0x0119, r25	; 0x800119 <LOWB_4+0x1>
+ 138:	80 93 18 01 	sts	0x0118, r24	; 0x800118 <LOWB_4>
+ 13c:	08 95       	ret
+
+0000013e <main>:
+//LOOP
+//******************************************************************************************************************
+
+int main(void)
+{
+	cli();			//Se apagan las interrupciones Globales
+ 13e:	f8 94       	cli
+	
+	//-> Se llaman a las funciones para integrarse a la función principlañ --- LOOP
+	ADC_IN();
+ 140:	0e 94 70 00 	call	0xe0	; 0xe0 <ADC_IN>
+	setup();
+ 144:	0e 94 53 00 	call	0xa6	; 0xa6 <setup>
+	b_inter();
+ 148:	0e 94 65 00 	call	0xca	; 0xca <b_inter>
+	
+	sei();			//Se activan las interrupciones globales
+ 14c:	78 94       	sei
+	
+	while(1)
+	{
+		if (Bi_contador > 255){
+ 14e:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 152:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 156:	8f 3f       	cpi	r24, 0xFF	; 255
+ 158:	91 05       	cpc	r25, r1
+ 15a:	29 f0       	breq	.+10     	; 0x166 <main+0x28>
+ 15c:	24 f0       	brlt	.+8      	; 0x166 <main+0x28>
+			Bi_contador = 0;
+ 15e:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <Bi_contador+0x1>
+ 162:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <Bi_contador>
+		}
+		if (Bi_contador < 0){
+ 166:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 16a:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 16e:	99 23       	and	r25, r25
+ 170:	34 f4       	brge	.+12     	; 0x17e <main+0x40>
+			Bi_contador = 255;
+ 172:	8f ef       	ldi	r24, 0xFF	; 255
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <Bi_contador+0x1>
+ 17a:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <Bi_contador>
+		}
+		
+		//-> Configuración de las LEDS
+		PORTB = Bi_contador;			//Se muestra el contador en las salidas PB0 a PB5	
+ 17e:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 182:	85 b9       	out	0x05, r24	; 5
+			
+		// -> Configuración del PD7 y PC2
+		
+		if ((Bi_contador > 63)&&(Bi_contador < 128)){
+ 184:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 188:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 18c:	80 54       	subi	r24, 0x40	; 64
+ 18e:	91 09       	sbc	r25, r1
+ 190:	80 34       	cpi	r24, 0x40	; 64
+ 192:	91 05       	cpc	r25, r1
+ 194:	20 f4       	brcc	.+8      	; 0x19e <main+0x60>
+			PORTC |= (1<<PC2);		//Se incluye "|" para indicar el PIN especifico del puerto C que se esta empelando 
+ 196:	88 b1       	in	r24, 0x08	; 8
+ 198:	84 60       	ori	r24, 0x04	; 4
+ 19a:	88 b9       	out	0x08, r24	; 8
+ 19c:	03 c0       	rjmp	.+6      	; 0x1a4 <main+0x66>
+		} else {
+			PORTC &= ~(1<<PC2);		//Se incluye "&" para indicar el PIN especifico del puerto C que se esta apagando
+ 19e:	88 b1       	in	r24, 0x08	; 8
+ 1a0:	8b 7f       	andi	r24, 0xFB	; 251
+ 1a2:	88 b9       	out	0x08, r24	; 8
+		}
+
+		if (Bi_contador > 127){
+ 1a4:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 1a8:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 1ac:	80 38       	cpi	r24, 0x80	; 128
+ 1ae:	91 05       	cpc	r25, r1
+ 1b0:	24 f0       	brlt	.+8      	; 0x1ba <main+0x7c>
+			PORTD |= (1<<PD7);		//Se incluye "|" para indicar el PIN especifico del puerto D que se esta empelando
+ 1b2:	8b b1       	in	r24, 0x0b	; 11
+ 1b4:	80 68       	ori	r24, 0x80	; 128
+ 1b6:	8b b9       	out	0x0b, r24	; 11
+ 1b8:	03 c0       	rjmp	.+6      	; 0x1c0 <main+0x82>
+		} else {
+			PORTD &= ~(1<<PD7);		//Se incluye "&" para indicar el PIN especifico del puerto D que se esta apagando
+ 1ba:	8b b1       	in	r24, 0x0b	; 11
+ 1bc:	8f 77       	andi	r24, 0x7F	; 127
+ 1be:	8b b9       	out	0x0b, r24	; 11
+		}
+		
+		if (Bi_contador > 191){
+ 1c0:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 1c4:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 1c8:	80 3c       	cpi	r24, 0xC0	; 192
+ 1ca:	91 05       	cpc	r25, r1
+ 1cc:	24 f0       	brlt	.+8      	; 0x1d6 <main+0x98>
+			PORTC |= (1<<PC2);		//Se incluye "|" para indicar el PIN especifico del puerto C que se esta empelando
+ 1ce:	88 b1       	in	r24, 0x08	; 8
+ 1d0:	84 60       	ori	r24, 0x04	; 4
+ 1d2:	88 b9       	out	0x08, r24	; 8
+ 1d4:	03 c0       	rjmp	.+6      	; 0x1dc <main+0x9e>
+			} else {
+			PORTC &= ~(1<<PC2);		//Se incluye "&" para indicar el PIN especifico del puerto C que se esta apagando
+ 1d6:	88 b1       	in	r24, 0x08	; 8
+ 1d8:	8b 7f       	andi	r24, 0xFB	; 251
+ 1da:	88 b9       	out	0x08, r24	; 8
+		}
+		
+		if (Bi_contador < 0){
+ 1dc:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 1e0:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 1e4:	99 23       	and	r25, r25
+ 1e6:	34 f4       	brge	.+12     	; 0x1f4 <main+0xb6>
+			PORTD &= ~(1<<PD7);
+ 1e8:	8b b1       	in	r24, 0x0b	; 11
+ 1ea:	8f 77       	andi	r24, 0x7F	; 127
+ 1ec:	8b b9       	out	0x0b, r24	; 11
+			PORTC &= ~(1<<PC2);
+ 1ee:	88 b1       	in	r24, 0x08	; 8
+ 1f0:	8b 7f       	andi	r24, 0xFB	; 251
+ 1f2:	88 b9       	out	0x08, r24	; 8
+		}
+		
+		// -> Se inicia la secuencia del ADC
+		ADCSRA |= (1<<ADSC);
+ 1f4:	ea e7       	ldi	r30, 0x7A	; 122
+ 1f6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1f8:	80 81       	ld	r24, Z
+ 1fa:	80 64       	ori	r24, 0x40	; 64
+ 1fc:	80 83       	st	Z, r24
+		
+		// Se configura la salida del Primer Display //
+		dec_hex(ADC_contador);
+ 1fe:	ca e1       	ldi	r28, 0x1A	; 26
+ 200:	d1 e0       	ldi	r29, 0x01	; 1
+ 202:	88 81       	ld	r24, Y
+ 204:	0e 94 90 00 	call	0x120	; 0x120 <dec_hex>
+		PORTD = DISP_HEX[LOWB_4];
+ 208:	e0 91 18 01 	lds	r30, 0x0118	; 0x800118 <LOWB_4>
+ 20c:	f0 91 19 01 	lds	r31, 0x0119	; 0x800119 <LOWB_4+0x1>
+ 210:	ea 5f       	subi	r30, 0xFA	; 250
+ 212:	fe 4f       	sbci	r31, 0xFE	; 254
+ 214:	80 81       	ld	r24, Z
+ 216:	8b b9       	out	0x0b, r24	; 11
+		
+		//Configuración de los transistores
+		PORTC |= (1<<PC4);						//Se activa el transistor del primer Display
+ 218:	88 b1       	in	r24, 0x08	; 8
+ 21a:	80 61       	ori	r24, 0x10	; 16
+ 21c:	88 b9       	out	0x08, r24	; 8
+		PORTC &= ~(1<<PC3);						//Se apaga el transistor del segundo Display
+ 21e:	88 b1       	in	r24, 0x08	; 8
+ 220:	87 7f       	andi	r24, 0xF7	; 247
+ 222:	88 b9       	out	0x08, r24	; 8
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 224:	8f e1       	ldi	r24, 0x1F	; 31
+ 226:	9e e4       	ldi	r25, 0x4E	; 78
+ 228:	01 97       	sbiw	r24, 0x01	; 1
+ 22a:	f1 f7       	brne	.-4      	; 0x228 <main+0xea>
+ 22c:	00 c0       	rjmp	.+0      	; 0x22e <main+0xf0>
+ 22e:	00 00       	nop
+		_delay_ms(DL_MX);			
+		
+		
+		// Se configura la salida del Segundo Display //
+		
+		dec_hex(ADC_contador);
+ 230:	88 81       	ld	r24, Y
+ 232:	0e 94 90 00 	call	0x120	; 0x120 <dec_hex>
+		PORTD = DISP_HEX[HIGHB_4];
+ 236:	e0 91 16 01 	lds	r30, 0x0116	; 0x800116 <__data_end>
+ 23a:	f0 91 17 01 	lds	r31, 0x0117	; 0x800117 <__data_end+0x1>
+ 23e:	ea 5f       	subi	r30, 0xFA	; 250
+ 240:	fe 4f       	sbci	r31, 0xFE	; 254
+ 242:	80 81       	ld	r24, Z
+ 244:	8b b9       	out	0x0b, r24	; 11
+
+		//Configuración de los transistores
+		PORTC |= (1<<PC3);					//Se apaga el transistor del primer Display
+ 246:	88 b1       	in	r24, 0x08	; 8
+ 248:	88 60       	ori	r24, 0x08	; 8
+ 24a:	88 b9       	out	0x08, r24	; 8
+		PORTC &= ~(1<<PC4);					//Se activa el transistor del segundo Display
+ 24c:	88 b1       	in	r24, 0x08	; 8
+ 24e:	8f 7e       	andi	r24, 0xEF	; 239
+ 250:	88 b9       	out	0x08, r24	; 8
+ 252:	8f e1       	ldi	r24, 0x1F	; 31
+ 254:	9e e4       	ldi	r25, 0x4E	; 78
+ 256:	01 97       	sbiw	r24, 0x01	; 1
+ 258:	f1 f7       	brne	.-4      	; 0x256 <main+0x118>
+ 25a:	00 c0       	rjmp	.+0      	; 0x25c <main+0x11e>
+ 25c:	00 00       	nop
+		_delay_ms(DL_MX);
+		
+		//Configuración de la Alarma//
+		if (ADC_contador > Bi_contador){
+ 25e:	20 91 1a 01 	lds	r18, 0x011A	; 0x80011a <ADC_contador>
+ 262:	30 91 1b 01 	lds	r19, 0x011B	; 0x80011b <ADC_contador+0x1>
+ 266:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Bi_contador>
+ 26a:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 26e:	82 17       	cp	r24, r18
+ 270:	93 07       	cpc	r25, r19
+ 272:	24 f4       	brge	.+8      	; 0x27c <main+0x13e>
+			PORTC |= (1<<PC5);
+ 274:	88 b1       	in	r24, 0x08	; 8
+ 276:	80 62       	ori	r24, 0x20	; 32
+ 278:	88 b9       	out	0x08, r24	; 8
+ 27a:	69 cf       	rjmp	.-302    	; 0x14e <main+0x10>
+			} else {
+			PORTC &= ~(1<<PC5);
+ 27c:	88 b1       	in	r24, 0x08	; 8
+ 27e:	8f 7d       	andi	r24, 0xDF	; 223
+ 280:	88 b9       	out	0x08, r24	; 8
+ 282:	65 cf       	rjmp	.-310    	; 0x14e <main+0x10>
+
+00000284 <__vector_21>:
+
+
+//***************************************************************************
+// ISR
+//***************************************************************************
+ISR(ADC_vect){
+ 284:	1f 92       	push	r1
+ 286:	0f 92       	push	r0
+ 288:	0f b6       	in	r0, 0x3f	; 63
+ 28a:	0f 92       	push	r0
+ 28c:	11 24       	eor	r1, r1
+ 28e:	8f 93       	push	r24
+ 290:	9f 93       	push	r25
+ 292:	ef 93       	push	r30
+ 294:	ff 93       	push	r31
+	ADC_contador = ADCH;
+ 296:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	90 93 1b 01 	sts	0x011B, r25	; 0x80011b <ADC_contador+0x1>
+ 2a0:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <ADC_contador>
+	ADCSRA |= (1<<ADIF);			//Al momento de activar el ADC, se debe apagar la bandera
+ 2a4:	ea e7       	ldi	r30, 0x7A	; 122
+ 2a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a8:	80 81       	ld	r24, Z
+ 2aa:	80 61       	ori	r24, 0x10	; 16
+ 2ac:	80 83       	st	Z, r24
+}
+ 2ae:	ff 91       	pop	r31
+ 2b0:	ef 91       	pop	r30
+ 2b2:	9f 91       	pop	r25
+ 2b4:	8f 91       	pop	r24
+ 2b6:	0f 90       	pop	r0
+ 2b8:	0f be       	out	0x3f, r0	; 63
+ 2ba:	0f 90       	pop	r0
+ 2bc:	1f 90       	pop	r1
+ 2be:	18 95       	reti
+
+000002c0 <__vector_4>:
+
+ISR(PCINT1_vect){
+ 2c0:	1f 92       	push	r1
+ 2c2:	0f 92       	push	r0
+ 2c4:	0f b6       	in	r0, 0x3f	; 63
+ 2c6:	0f 92       	push	r0
+ 2c8:	11 24       	eor	r1, r1
+ 2ca:	2f 93       	push	r18
+ 2cc:	3f 93       	push	r19
+ 2ce:	8f 93       	push	r24
+ 2d0:	9f 93       	push	r25
+	Boton1_S1 = PINC&(1<<PINC0);				//Se configura la entrada del boton PC0
+ 2d2:	86 b1       	in	r24, 0x06	; 6
+ 2d4:	81 70       	andi	r24, 0x01	; 1
+ 2d6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <Boton1_S1>
+	Boton1_S1 = PINC&(1<<PINC0);				//Se configura la entrada del boton PC0
+ 2da:	96 b1       	in	r25, 0x06	; 6
+ 2dc:	91 70       	andi	r25, 0x01	; 1
+ 2de:	90 93 02 01 	sts	0x0102, r25	; 0x800102 <Boton1_S1>
+	Boton2_S2 = PINC&(1<<PINC1);
+ 2e2:	86 b1       	in	r24, 0x06	; 6
+ 2e4:	82 70       	andi	r24, 0x02	; 2
+ 2e6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+	
+	if ((Boton1_S1 == 0)&&(Boton1_LS1 == 1)){			//Si se cumple la condición, el contador aumenta//Si se cumple la condición, el contador aumenta
+ 2ea:	91 11       	cpse	r25, r1
+ 2ec:	10 c0       	rjmp	.+32     	; 0x30e <__vector_4+0x4e>
+ 2ee:	20 91 03 01 	lds	r18, 0x0103	; 0x800103 <Boton1_LS1>
+ 2f2:	21 30       	cpi	r18, 0x01	; 1
+ 2f4:	61 f4       	brne	.+24     	; 0x30e <__vector_4+0x4e>
+		Boton1_LS1 = 0;
+ 2f6:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <Boton1_LS1>
+		Bi_contador ++;
+ 2fa:	20 91 04 01 	lds	r18, 0x0104	; 0x800104 <Bi_contador>
+ 2fe:	30 91 05 01 	lds	r19, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 302:	2f 5f       	subi	r18, 0xFF	; 255
+ 304:	3f 4f       	sbci	r19, 0xFF	; 255
+ 306:	30 93 05 01 	sts	0x0105, r19	; 0x800105 <Bi_contador+0x1>
+ 30a:	20 93 04 01 	sts	0x0104, r18	; 0x800104 <Bi_contador>
+	}
+	
+	if (Boton1_S1 == 1){
+ 30e:	91 30       	cpi	r25, 0x01	; 1
+ 310:	11 f4       	brne	.+4      	; 0x316 <__vector_4+0x56>
+		Boton1_LS1 = 1;
+ 312:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <Boton1_LS1>
+	}
+	
+	if ((Boton2_S2 == 0)&&(Boton2_LS2 == 2)){			//Si se cumple la condición, el contador aumenta//Si se cumple la condición, el contador disminuye
+ 316:	81 11       	cpse	r24, r1
+ 318:	10 c0       	rjmp	.+32     	; 0x33a <__vector_4+0x7a>
+ 31a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <Boton2_LS2>
+ 31e:	92 30       	cpi	r25, 0x02	; 2
+ 320:	61 f4       	brne	.+24     	; 0x33a <__vector_4+0x7a>
+		Boton2_LS2 = 0;
+ 322:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <Boton2_LS2>
+		Bi_contador --;
+ 326:	20 91 04 01 	lds	r18, 0x0104	; 0x800104 <Bi_contador>
+ 32a:	30 91 05 01 	lds	r19, 0x0105	; 0x800105 <Bi_contador+0x1>
+ 32e:	21 50       	subi	r18, 0x01	; 1
+ 330:	31 09       	sbc	r19, r1
+ 332:	30 93 05 01 	sts	0x0105, r19	; 0x800105 <Bi_contador+0x1>
+ 336:	20 93 04 01 	sts	0x0104, r18	; 0x800104 <Bi_contador>
+	}
+	
+	if (Boton2_S2 == 2){
+ 33a:	82 30       	cpi	r24, 0x02	; 2
+ 33c:	11 f4       	brne	.+4      	; 0x342 <__vector_4+0x82>
+		Boton2_LS2 = 2;
+ 33e:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <Boton2_LS2>
+	}
+}
+ 342:	9f 91       	pop	r25
+ 344:	8f 91       	pop	r24
+ 346:	3f 91       	pop	r19
+ 348:	2f 91       	pop	r18
+ 34a:	0f 90       	pop	r0
+ 34c:	0f be       	out	0x3f, r0	; 63
+ 34e:	0f 90       	pop	r0
+ 350:	1f 90       	pop	r1
+ 352:	18 95       	reti
+
+00000354 <_exit>:
+ 354:	f8 94       	cli
+
+00000356 <__stop_program>:
+ 356:	ff cf       	rjmp	.-2      	; 0x356 <__stop_program>
